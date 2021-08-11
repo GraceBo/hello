@@ -2,8 +2,6 @@ const express = require('express');
 const router = express.Router();
 const gravatar = require('gravatar');
 const bcrypt = require('bcryptjs');
-const mongoose = require('mongoose');
-
 
 //load user model
 const User = require ('../../models/User');
@@ -15,10 +13,9 @@ router.get('/test', (req, res) => res.json({ msg: 'users works'}));
 router.post('/register', (req, res) => {
     User.findOne({ email: req.body.email })
         .then(user => {
-            if(false){
-                return res.status(400).json({email: 'email already exists'});
-            }else{
-
+            if(user) {
+                return res.status(400).json({email : 'email already exists'});
+            }else {
                 const avatar = gravatar.url(req.body.email, {
                     s: '200',
                     r: 'pg',
@@ -26,9 +23,9 @@ router.post('/register', (req, res) => {
                 });
 
                 const newUser = new User({
-                    username: req.body.username,
-                    password: req.body.password,
-                    email: req.body.email,
+                    username : req.body.username,
+                    email : req.body.email,
+                    password : req.body.password,
                     avatar,
                 });
 
@@ -42,7 +39,7 @@ router.post('/register', (req, res) => {
                     })
                 })
             }
-        })
+        });
 });
 
 module.exports = router;

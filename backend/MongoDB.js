@@ -10,7 +10,6 @@ mongoose.connect('mongodb://localhost:27017/hello', {
 }).then( () => {
 
     User.findOne().then( users => {
-        console.log('funziona');
         console.log(users);
     })
 
