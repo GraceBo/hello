@@ -2,15 +2,20 @@ const express = require('express');
 const router = express.Router();
 const gravatar = require('gravatar');
 const bcrypt = require('bcryptjs');
+const mongoose = require('mongoose');
+
 
 //load user model
-const User = require ('../../MongoDB');
+const User = require ('../../models/User');
+
+
+router.get('/test', (req, res) => res.json({ msg: 'users works'}));
 
 //register user
 router.post('/register', (req, res) => {
     User.findOne({ email: req.body.email })
         .then(user => {
-            if(user){
+            if(false){
                 return res.status(400).json({email: 'email already exists'});
             }else{
 
