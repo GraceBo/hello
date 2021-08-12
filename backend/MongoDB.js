@@ -12,5 +12,5 @@ mongoose.connect('mongodb://localhost:27017/hello', {
     User.findOne().then( users => {
         console.log(users);
     })
-
+    console.log('database connected');
 })
