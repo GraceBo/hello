@@ -1,9 +1,31 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
+//DB
+require('colors');
+const mongoose = require ('mongoose');
+const User = require('./models/User');
+
+
+
+    mongoose.connect('mongodb://localhost:27017/hello', {
+
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    }).then(() => {
+
+        User.findOne().then(users => {
+            console.log(users);
+        })
+    });
+
+
+
+//routes
 const users = require('./routes/api/users');
 const profile = require('./routes/api/profile');
 const posts = require('./routes/api/posts');
+
 
 const app = express();
 

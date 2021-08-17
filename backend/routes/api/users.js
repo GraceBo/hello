@@ -14,7 +14,7 @@ router.post('/register', async (req, res) => {
     let user;
     try{
         user = await User.findOne({email: req.body.email});
-        console.log("users", user);
+        console.log("user", user);
     }catch(e){
         console.log(e);
         return res.status(500).json({ message: "error db"});
@@ -38,9 +38,8 @@ router.post('/register', async (req, res) => {
 
         bcrypt.genSalt(10, (err, salt) => {
             bcrypt.hash(newUser.password, salt, (err, hash) => {
-                if(err) throw err;
                 newUser.password = hash;
-                newUser.password.save()
+                newUser.save()
                     .then(user => res.json(user))
                     .catch(err => console.log(err));
             })
