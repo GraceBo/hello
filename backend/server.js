@@ -14,9 +14,10 @@ const User = require('./models/User');
         useUnifiedTopology: true,
     }).then(() => {
 
-        User.findOne().then(users => {
-            console.log(users);
-        })
+            User.findOne().then(user => {
+                console.log(user);
+                return (user);
+            });
     });
 
 

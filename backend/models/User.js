@@ -9,7 +9,7 @@ const UserSchema = new Schema({
         type: String,
     },
     password: {
-        type: String,
+        type: Boolean,
     },
     avatar: {
         type: String,
@@ -18,6 +18,6 @@ const UserSchema = new Schema({
         type: Date,
         default: Date.now,
     },
-})
+});
 
 module.exports = User = mongoose.model('users', UserSchema);
